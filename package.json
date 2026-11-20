@@ -1,0 +1,18 @@
+{
+  "name": "office-manager",
+  "version": "1.0.0",
+  "description": "Office manager web app: Replenish, Rooms, Parking, Library, Events, Promos, Community Board, Attendance",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/*.test.js\"",
+    "create-admin": "node --disable-warning=ExperimentalWarning scripts/create-admin.js",
+    "seed-starter": "node --disable-warning=ExperimentalWarning scripts/seed-starter.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.0"
+  }
+}

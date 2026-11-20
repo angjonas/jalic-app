@@ -1,0 +1,24 @@
+# Office Manager behind Caddy, which gets and renews a free HTTPS certificate automatically.
+# 1. Point a DNS name (e.g. office.yourcompany.com) at this server.
+# 2. Put that name in the Caddyfile (next to this file).
+# 3. docker compose up -d
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      BEHIND_HTTPS: "1"
+      TZ: Asia/Manila
+    volumes:
+      - ./data:/data
+    user: "1000:1000"
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [app]
+volumes:
+  caddy_data:
